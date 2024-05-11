@@ -1,0 +1,4 @@
+// Grato
+//<a href="https://br.freepik.com/vetores-gratis/maos-em-punho-e-simbolo-de-vitoria_20956050.htm#fromView=search&page=1&position=34&uuid=4a2337b5-1e1e-4fe8-9ff7-d71f43a3013e">Imagem de upklyak no Freepik</a>
+// <a href="https://br.freepik.com/vetores-gratis/fundo-de-galaxia-linda-mao-desenhada_2906641.htm#fromView=search&page=1&position=28&uuid=ad342496-ee9e-4323-97f5-227635b3beae">Imagem de freepik</a>
+// <a href="https://br.freepik.com/vetores-gratis/colecao-de-maos-humanas_34945766.htm#fromView=search&page=1&position=34&uuid=d76789a6-62b7-474c-8788-b15d44e80057">Imagem de brgfx no Freepik</a>
