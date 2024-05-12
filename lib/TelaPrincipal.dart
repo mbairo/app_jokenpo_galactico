@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class TelaPrincipal extends StatefulWidget {
-  const TelaPrincipal({super.key});
+  final String? _heroiEscolhido;
+
+  const TelaPrincipal({Key? key, String? nomeDaImgHeroi})
+      : _heroiEscolhido = nomeDaImgHeroi,
+        super(key: key);
 
   @override
   State<TelaPrincipal> createState() => _TelaPrincipalState();
@@ -20,44 +24,53 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   Color corDoTextoResultado = Colors.red;
   Color corDaBordaEmpate = Colors.transparent;
 
-  void _escolhaDoUsuario(String imgEscolhidaPeloUsuario) {
-    var listaDeOpcoes = ["pedra", "papel", "tesoura"];
+  void _escolhaDoUsuario(String ataqueSelecionado) {
+    var listaDeOpcoes = ["Pedra", "Papel", "Tesoura"];
     var numero = Random().nextInt(3);
     var escolhaDoApp = listaDeOpcoes[numero];
 
-    this._imgSelecionadoPeloUsuario =
-        AssetImage("img/$imgEscolhidaPeloUsuario.png");
+    print("Ataque escolhido na aba 'TelaPrincipal': $ataqueSelecionado");
+
+    if (widget._heroiEscolhido == "et") {
+      this._imgSelecionadoPeloUsuario =
+          AssetImage("img/et$ataqueSelecionado.png");
+    } else if (widget._heroiEscolhido == "humano") {
+      this._imgSelecionadoPeloUsuario =
+          AssetImage("img/humano$ataqueSelecionado.png");
+    } else {
+      this._imgSelecionadoPeloUsuario =
+          AssetImage("img/robot$ataqueSelecionado.png");
+    }
 
     switch (escolhaDoApp) {
-      case "pedra":
+      case "Pedra":
         setState(() {
-          this._imgEscolhidaPeloApp = AssetImage("img/pedra.png");
+          this._imgEscolhidaPeloApp = AssetImage("img/appPedra.png");
         });
         break;
-      case "papel":
+      case "Papel":
         setState(() {
-          this._imgEscolhidaPeloApp = AssetImage("img/papel.png");
+          this._imgEscolhidaPeloApp = AssetImage("img/appPapel.png");
         });
         break;
-      case "tesoura":
+      case "Tesoura":
         setState(() {
-          this._imgEscolhidaPeloApp = AssetImage("img/tesoura.png");
+          this._imgEscolhidaPeloApp = AssetImage("img/appTesoura.png");
         });
         break;
     }
 
-    if ((imgEscolhidaPeloUsuario == "pedra" && escolhaDoApp == "tesoura") ||
-        (imgEscolhidaPeloUsuario == "tesoura" && escolhaDoApp == "papel") ||
-        (imgEscolhidaPeloUsuario == "papel" && escolhaDoApp == "pedra")) {
+    if ((ataqueSelecionado == "Pedra" && escolhaDoApp == "Tesoura") ||
+        (ataqueSelecionado == "Tesoura" && escolhaDoApp == "Papel") ||
+        (ataqueSelecionado == "Papel" && escolhaDoApp == "Pedra")) {
       _msgDoResultado = "Usuário ganhou!";
       corDoTextoResultado = Colors.green;
       corDaBordaUsuario = Colors.green;
       corDaBordaApp = Colors.transparent;
       placarUsuario += 1;
-    } else if ((escolhaDoApp == "pedra" &&
-        imgEscolhidaPeloUsuario == "tesoura") ||
-        (escolhaDoApp == "tesoura" && imgEscolhidaPeloUsuario == "papel") ||
-        (escolhaDoApp == "papel" && imgEscolhidaPeloUsuario == "pedra")) {
+    } else if ((escolhaDoApp == "Pedra" && ataqueSelecionado == "Tesoura") ||
+        (escolhaDoApp == "Tesoura" && ataqueSelecionado == "Papel") ||
+        (escolhaDoApp == "Papel" && ataqueSelecionado == "Pedra")) {
       _msgDoResultado = "App ganhou!";
       corDoTextoResultado = Colors.blue;
       corDaBordaApp = Colors.blue;
@@ -73,9 +86,14 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    // Apagar
+    print(
+        "Escolha realizada na aba 'EscolherHeroi': ${widget._heroiEscolhido}");
+
     return Scaffold(
       appBar: AppBar(),
-      // backgroundColor: Colors.black26,
+      // backgroundColor: Colors.blueGrey[100],
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -85,13 +103,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                child: Image.asset("img/pedra.png", height: 100),
+                child: Image.asset("img/appPedra.png", height: 100),
               ),
               GestureDetector(
-                child: Image.asset("img/papel.png", height: 100),
+                child: Image.asset("img/appPapel.png", height: 100),
               ),
               GestureDetector(
-                child: Image.asset("img/tesoura.png", height: 100),
+                child: Image.asset("img/appTesoura.png", height: 100),
               )
             ],
           ),
@@ -113,15 +131,11 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             margin: EdgeInsets.only(bottom: 3),
             width: 75,
             decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.blue, width: 3),
-              borderRadius: BorderRadius.circular(
-                  5),
+              border: Border.all(color: Colors.blue, width: 3),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical:
-                  4),
+              padding: EdgeInsets.symmetric(vertical: 4),
               child: Text(
                 placarApp.toString(),
                 textAlign: TextAlign.center,
@@ -135,6 +149,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
           // Img da esolha do app
           Container(
+            width: 150,
+            height: 150,
             child: ClipOval(
               child: Image(image: this._imgEscolhidaPeloApp),
             ),
@@ -163,6 +179,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
           // Seção do Usuário  ------------------------------------------------
           Container(
+            width: 150,
+            height: 150,
             padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
               border: Border.all(color: this.corDaBordaUsuario, width: 4),
@@ -178,15 +196,11 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             margin: EdgeInsets.only(top: 3),
             width: 75,
             decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.green, width: 3),
-              borderRadius: BorderRadius.circular(
-                  5),
+              border: Border.all(color: Colors.green, width: 3),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical:
-                  4),
+              padding: EdgeInsets.symmetric(vertical: 4),
               child: Text(
                 placarUsuario.toString(),
                 textAlign: TextAlign.center,
@@ -214,16 +228,19 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                child: Image.asset("img/pedra.png", height: 100),
-                onTap: () => _escolhaDoUsuario("pedra"),
+                child: Image.asset("img/${widget._heroiEscolhido}Pedra.png",
+                    height: 100),
+                onTap: () => _escolhaDoUsuario("Pedra"),
               ),
               GestureDetector(
-                child: Image.asset("img/papel.png", height: 100),
-                onTap: () => _escolhaDoUsuario("papel"),
+                child: Image.asset("img/${widget._heroiEscolhido}Papel.png",
+                    height: 100),
+                onTap: () => _escolhaDoUsuario("Papel"),
               ),
               GestureDetector(
-                child: Image.asset("img/tesoura.png", height: 100),
-                onTap: () => _escolhaDoUsuario("tesoura"),
+                child: Image.asset("img/${widget._heroiEscolhido}Tesoura.png",
+                    height: 100),
+                onTap: () => _escolhaDoUsuario("Tesoura"),
               )
             ],
           )
@@ -232,3 +249,19 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     );
   }
 }
+
+
+
+//TODO: Para colocar uma img de fundo..
+/*
+Stack(
+children: [
+// Imagem de fundo
+Positioned.fill(
+child: Image.asset(
+'img/galaxy.jpg',
+fit: BoxFit.cover,
+),
+),
+SingleChildScrollView(
+*/

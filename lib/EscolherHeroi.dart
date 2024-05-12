@@ -1,24 +1,43 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mb_jokenpo/TelaPrincipal.dart';
 
 class EscolherHeroi extends StatefulWidget {
-  const EscolherHeroi({super.key});
+  const EscolherHeroi({Key? key}) : super(key: key);
 
   @override
   State<EscolherHeroi> createState() => _EscolherHeroiState();
 }
 
-var _heroiEscolhido;
-
-// Métodos
-void _escolherHeroi(String heroi) {
-  _heroiEscolhido = heroi;
-}
-
-
-
-
 class _EscolherHeroiState extends State<EscolherHeroi> {
+  String? _heroiEscolhido;
+  bool _heroiSelecionado = false;
+
+  void _escolherHeroi(String heroi) {
+    setState(() {
+      _heroiEscolhido = heroi;
+      _heroiSelecionado = true;
+    });
+  }
+
+  Widget _buildHeroImage(String imagePath, String nomeDoHeroi) {
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: _heroiEscolhido == nomeDoHeroi
+                ? Colors.yellow
+                : Colors.transparent,
+            width: 4.0,
+          ),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Image.asset(imagePath, height: 200),
+      ),
+      onTap: () => _escolherHeroi(nomeDoHeroi),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,47 +46,55 @@ class _EscolherHeroiState extends State<EscolherHeroi> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Escolha do Heroi", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), ),
+          Text(
+            "Escolha do Heroi",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
 
-          Padding(padding: EdgeInsets.only(bottom: 70)),
+          Padding(padding: EdgeInsets.only(bottom: 50)),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          //     _buildHeroImage('img/robot.png', 'robot'),
+          //     _buildHeroImage('img/et.png', 'et'),
+          //     _buildHeroImage('img/astronautaMulher.png', 'humano'),
+          //   ],
+          // ),
+
+          Wrap(
+            alignment: WrapAlignment.spaceEvenly,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              GestureDetector(
-                child: Image.asset('img/pedra.png', height: 100),
-                onTap: () => _escolherHeroi("pedra"),
-              ),
-              GestureDetector(
-                child: Image.asset('img/pedra.png', height: 100),
-                onTap: () => _escolherHeroi("papel"),
-              ),
-              GestureDetector(
-                child: Image.asset('img/pedra.png', height: 100),
-                onTap: () => _escolherHeroi("tesoura"),
-              ),
+              _buildHeroImage('img/robot.png', 'robot'),
+              _buildHeroImage('img/et.png', 'et'),
+              // _buildHeroImage('img/astronauta.png', 'humano'),
+              _buildHeroImage('img/astronautaMulher.png', 'humano'),
             ],
           ),
 
-          Padding(padding: EdgeInsets.only(top: 20)),
+          Padding(padding: EdgeInsets.only(top: 40)),
 
-
-          ElevatedButton(
-            child: Text(
-              "Jogar",
-              style: TextStyle(
+          if (_heroiSelecionado)
+            ElevatedButton(
+              child: Text(
+                "Jogar",
+                style: TextStyle(
                   fontSize: 25,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            onPressed: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => TelaPrincipal())
-              );
-            },
-          )
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          TelaPrincipal(nomeDaImgHeroi: _heroiEscolhido)),
+                );
+              },
+            )
         ],
       ),
     );

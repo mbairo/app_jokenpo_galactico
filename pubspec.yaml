@@ -71,10 +71,30 @@ flutter:
 
   assets:
     - img/padrao.png
-    - img/papel.png
-    - img/pedra.png
-    - img/tesoura.png
+
+    - img/appPapel.png
+    - img/appPedra.png
+    - img/appTesoura.png
+
+    - img/humanoPapel.png
+    - img/humanoPedra.png
+    - img/humanoTesoura.png
+
+    - img/etPapel.png
+    - img/etPedra.png
+    - img/etTesoura.png
+
+    - img/robotPapel.png
+    - img/robotPedra.png
+    - img/robotTesoura.png
+
     - img/galaxySplashScreen.png
+    - img/robot.png
+    - img/robot1.png
+    - img/et.png
+    - img/astronauta.png
+    - img/astronautaMulher.png
+    - img/galaxy.jpg
 
 
 
