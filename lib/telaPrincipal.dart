@@ -13,8 +13,8 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
-  var _imgEscolhidaPeloApp = AssetImage("img/padrao.png");
-  var _imgSelecionadoPeloUsuario = AssetImage("img/padrao.png");
+  var _imgEscolhidaPeloApp = AssetImage("assets/img/padrao.png");
+  var _imgSelecionadoPeloUsuario = AssetImage("assets/img/padrao.png");
   var _msgDoResultado = "X";
   var placarApp = 0;
   var placarUsuario = 0;
@@ -33,29 +33,29 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
     if (widget._heroiEscolhido == "et") {
       this._imgSelecionadoPeloUsuario =
-          AssetImage("img/et$ataqueSelecionado.png");
+          AssetImage("assets/img/et$ataqueSelecionado.png");
     } else if (widget._heroiEscolhido == "humano") {
       this._imgSelecionadoPeloUsuario =
-          AssetImage("img/humano$ataqueSelecionado.png");
+          AssetImage("assets/img/humano$ataqueSelecionado.png");
     } else {
       this._imgSelecionadoPeloUsuario =
-          AssetImage("img/robot$ataqueSelecionado.png");
+          AssetImage("assets/img/robot$ataqueSelecionado.png");
     }
 
     switch (escolhaDoApp) {
       case "Pedra":
         setState(() {
-          this._imgEscolhidaPeloApp = AssetImage("img/appPedra.png");
+          this._imgEscolhidaPeloApp = AssetImage("assets/img/appPedra.png");
         });
         break;
       case "Papel":
         setState(() {
-          this._imgEscolhidaPeloApp = AssetImage("img/appPapel.png");
+          this._imgEscolhidaPeloApp = AssetImage("assets/img/appPapel.png");
         });
         break;
       case "Tesoura":
         setState(() {
-          this._imgEscolhidaPeloApp = AssetImage("img/appTesoura.png");
+          this._imgEscolhidaPeloApp = AssetImage("assets/img/appTesoura.png");
         });
         break;
     }
@@ -63,7 +63,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     if ((ataqueSelecionado == "Pedra" && escolhaDoApp == "Tesoura") ||
         (ataqueSelecionado == "Tesoura" && escolhaDoApp == "Papel") ||
         (ataqueSelecionado == "Papel" && escolhaDoApp == "Pedra")) {
-      _msgDoResultado = "Usuário ganhou!";
+      _msgDoResultado = "Você ganhou!";
       corDoTextoResultado = Colors.green;
       corDaBordaUsuario = Colors.green;
       corDaBordaApp = Colors.transparent;
@@ -103,13 +103,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                child: Image.asset("img/appPedra.png", height: 100),
+                child: Image.asset("assets/img/appPedra.png", height: 100),
               ),
               GestureDetector(
-                child: Image.asset("img/appPapel.png", height: 100),
+                child: Image.asset("assets/img/appPapel.png", height: 100),
               ),
               GestureDetector(
-                child: Image.asset("img/appTesoura.png", height: 100),
+                child: Image.asset("assets/img/appTesoura.png", height: 100),
               )
             ],
           ),
@@ -117,7 +117,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           const Padding(
             padding: EdgeInsets.only(top: 0, bottom: 0),
             child: Text(
-              "Escolha do App",
+              "Ataques do App",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -215,7 +215,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           const Padding(
             padding: EdgeInsets.only(top: 0, bottom: 0),
             child: Text(
-              "Escolha do Usuário",
+              "Ataques do Herói",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -228,17 +228,17 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                child: Image.asset("img/${widget._heroiEscolhido}Pedra.png",
+                child: Image.asset("assets/img/${widget._heroiEscolhido}Pedra.png",
                     height: 100),
                 onTap: () => _escolhaDoUsuario("Pedra"),
               ),
               GestureDetector(
-                child: Image.asset("img/${widget._heroiEscolhido}Papel.png",
+                child: Image.asset("assets/img/${widget._heroiEscolhido}Papel.png",
                     height: 100),
                 onTap: () => _escolhaDoUsuario("Papel"),
               ),
               GestureDetector(
-                child: Image.asset("img/${widget._heroiEscolhido}Tesoura.png",
+                child: Image.asset("assets/img/${widget._heroiEscolhido}Tesoura.png",
                     height: 100),
                 onTap: () => _escolhaDoUsuario("Tesoura"),
               )
@@ -249,8 +249,6 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     );
   }
 }
-
-
 
 //TODO: Para colocar uma img de fundo..
 /*

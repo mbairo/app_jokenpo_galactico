@@ -2,8 +2,9 @@ author:
   - Marcos Bairo
   - bairo.marcos@gmail.com
   - github.com/mbairo
+  - linkedin.com/in/marcosbairo
 
-name: mb_jokenpo
+name: jokenpo_galactico
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -41,10 +42,32 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/icon/icon.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -70,31 +93,34 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - img/padrao.png
+    - assets/img/padrao.png
 
-    - img/appPapel.png
-    - img/appPedra.png
-    - img/appTesoura.png
+    - assets/img/appPapel.png
+    - assets/img/appPedra.png
+    - assets/img/appTesoura.png
 
-    - img/humanoPapel.png
-    - img/humanoPedra.png
-    - img/humanoTesoura.png
+    - assets/img/humanoPapel.png
+    - assets/img/humanoPedra.png
+    - assets/img/humanoTesoura.png
 
-    - img/etPapel.png
-    - img/etPedra.png
-    - img/etTesoura.png
+    - assets/img/etPapel.png
+    - assets/img/etPedra.png
+    - assets/img/etTesoura.png
 
-    - img/robotPapel.png
-    - img/robotPedra.png
-    - img/robotTesoura.png
+    - assets/img/robotPapel.png
+    - assets/img/robotPedra.png
+    - assets/img/robotTesoura.png
 
-    - img/galaxySplashScreen.png
-    - img/robot.png
-    - img/robot1.png
-    - img/et.png
-    - img/astronauta.png
-    - img/astronautaMulher.png
-    - img/galaxy.jpg
+    - assets/img/galaxySplashScreen.png
+    - assets/img/robot.png
+    - assets/img/robot1.png
+    - assets/img/et.png
+    - assets/img/astronauta.png
+    - assets/img/astronautaMulher.png
+    - assets/img/galaxy.jpg
+    - assets/img/oldPaper.png
+    - assets/img/regrasDoJogo.png
+    - assets/img/sobre.png
 
 
 

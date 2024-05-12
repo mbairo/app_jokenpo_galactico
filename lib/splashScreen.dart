@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mb_jokenpo/EscolherHeroi.dart';
+import 'package:jokenpo_galactico/escolherHeroi.dart';
 import 'dart:async';
-import 'package:mb_jokenpo/TelaPrincipal.dart';
+import 'package:jokenpo_galactico/telaPrincipal.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Expanded(
               child: GestureDetector(
                 child: Image.asset(
-                  "img/galaxySplashScreen.png",
+                  "assets/img/galaxySplashScreen.png",
                   fit: BoxFit.cover,
                 ),
               ),
