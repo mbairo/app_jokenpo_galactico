@@ -80,7 +80,7 @@ class _EscolherHeroiState extends State<EscolherHeroi> {
           if (_heroiSelecionado)
             ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
+                backgroundColor: WidgetStatePropertyAll<Color>(Colors.greenAccent),
               ),
               child: Text(
                 "Jogar",
